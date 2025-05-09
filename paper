@@ -1,1 +1,110 @@
-paper
+3.1 Brand impersonation 
+Brand impersonation definition
+In the context of email security, brand impersonation is a form of phishing cyber-attack that aims to solicit sensitive information from victims by posing as a legitimate brand. All brands, small and large, are susceptible to impersonation tactics. However, attackers will often impersonate large brands like Facebook, Amazon, Microsoft, and Google because of their large user base.   
+How does brand impersonation work?
+To launch a brand impersonation attack, a cyber-attacker engineers a message that masks itself as a message from the impersonated brand. This message will look like it is being sent from a legitimate member of the organization so that the victim does not bother to further investigate the sender’s credentials. The message may contain a request or requirement for the victim to verify their account information or send money to the imposter.
+Examples of brand impersonation
+Technical support
+Brand impersonators can mask themselves as members of an external company’s technical support staff of a credible brand to request login credentials and gain access to individuals’ accounts.  
+E-commerce
+‍E-commerce sites are particularly vulnerable for being impersonated because they conduct money transaction via the internet and have access to sensitive information of their customers like credit card numbers. It is not uncommon to receive smishing messages from brand impersonators masking themselves as an e-commerce company stating that “there is an issue with your order” and asking for your login credentials to verify your identity.  
+Job offer
+‍Impersonating a potential employer in the recruitment process causes a sense of urgency in the victim. Brand impersonators take advantage of job seekers who tend to be extra vigilant of their email and eager to respond to opportunities.  
+Legal entity
+‍Legal organizations have access to and commonly request sensitive information from their clients. Therefore, brand impersonators will take advantage of this and pose as a law firm or government authority in order to trick the victim into handing over sensitive information.
+Social media
+‍Outside of phishing emails, impersonators can create fake social media accounts that mimic legitimate brands in order to solicit information from individuals. 
+How to identify brand impersonation?
+To identify brand impersonation, do the following:
+Verify the sender‍
+Often the sender of the message will not be from a legitimate source. Spoofed domains and sender’s addresses are common with brand impersonators. You may use SPF, DKIM or DMARC checks.  
+Be cautious of grammar
+‍Inexperienced brand impersonators are likely to make grammatical and spelling errors in their messages. If a message looks unprofessional, be extremely cautious around it. However, it is possible for brand impersonators to send messages that are grammatically correct and for legitimate mail to have some spelling errors.
+Communication methods
+‍Organizations usually communicate with their customers through similar methods. If this is a method of communication or at a frequency that is uncommon between you and the brand, then it could be brand impersonation.  
+Filter spam
+‍Setting your systems to filter for spam emails, vishing calls, or smishing text messages will send most brand impersonation attempts to a separate mailbox. While this method is not full proof, it is helpful for avoiding some brand impersonation attempts.
+Advanced security solutions
+‍To stop brand impersonation attacks from reaching email inboxes, advanced security solutions like Darktrace/Email™ understand user behavior to identify deviations from normal business activity. This means that even novel attacks and social engineering attacks without obvious spelling errors or poor grammar will still be recognized. When a particular user behaves abnormally, like receiving an email from an unknown sender or sending atypical information, Darktrace can alert the security team and stop this user from causing further harm.
+https://www.darktrace.com/cyber-ai-glossary/brand-impersonation
+3.2: Pharmaceutical-themed spam campaigns continue to target individuals and organizations, particularly in the healthcare and pharmaceutical sectors. Recent observations reveal a bulk spam campaign using spoofed identities and compromised infrastructure to send deceptive emails. The attackers employ tactics such as domain spoofing, DKIM signature manipulation, and the use of compromised servers running malicious PHP scripts. The emails contain links that redirect users to fraudulent websites posing as legitimate Canadian pharmacies, often including a fake security verification step. These campaigns aim to trick recipients into revealing sensitive information or potentially installing malware. The persistence of pharmacy-themed spam highlights the need for continued vigilance and awareness of common scam tactics.
+OPENCTI LABELS :
+phishing,spam,social-engineering,domain-spoofing,pharmacy,compromised-servers,email-security,fraudulent-websites,dkim
+https://blog.netmanageit.com/the-return-of-pharmacy-themed-spam/
+
+3.3
+Results
+The number of active Internet pharmacy websites decreased; 23 of 136 (16.9%) online pharmacies ceased operating within 12 months and only 67 monitored websites (49.3%) were accessible at the end of the four-year observation period. However, not all operated continuously, as about one-fifth (31/136) of all observed online pharmacy websites were inaccessible provisionally. Thus, only 56 (41.2%) Internet-based pharmacies were continuously operational. Thirty-one of the 136 online pharmacies (22.8%) had not provided any contact details, while only 59 (43.4%) displayed all necessary contact information on the website. We found that the declared physical location claims did not correspond to the area of domain registration (according to IP address) for most websites. Although the majority (120/136, 88.2%) of the examined Internet pharmacies distributed various prescription-only medicines, only 9 (6.6%) requested prior medical prescriptions before purchase. Medical information exchange was generally ineffective as 52 sites (38.2%) did not require any medical information from patients. The product information about the medicines was generally (126/136, 92.6%) not displayed adequately, and the contents of the patient information leaflet were incomplete in most cases (104/136, 76.5%). Numerous online operators (60/136, 44.1%) were defined as rogue Internet pharmacies, but no legitimate Internet-based pharmacies were among them. One site (0.7%) was yet unverified, 23 (16.9%) were unapproved, while the remaining (52/136, 38.2%) websites were not available in the LegitScript database. Contrary to our prior assumptions, prescription or medical information requirement, or the indication of contact information on the website, does not seem to correlate with “rogue pharmacy” status using the LegitScript online pharmacy verification standards. Instead, long-term continuous operation strongly correlated (P<.001) with explicit illegal activity.
+Conclusions
+Most Internet pharmacies in our study sample were illegal sites within the definition of “rogue” Internet pharmacy. These websites violate professional, legal, and ethical standards and endanger patient safety. This work shows evidence that online pharmacies that act illegally appear to have greater longevity than others, presumably because there is no compelling reason for frequent change in order to survive. We also found that one in five websites revived (closed down and reopened again within four years) and no-prescription sites with limited medicine and patient information are flourishing.
+Keywords: online pharmacies, Internet pharmacy, online pharmaceutical services, online medicines, counterfeit medicines, patient safety
+
+
+3.4
+Methods
+Searches were carried out on five electronic databases and grey literature sources. Quantitative, qualitative and mixed methods studies were eligible for inclusion. Titles and abstracts were screened by two reviewers independently. Determinants were identified from the included studies, extracted and allocated to constructs in the Consolidated Framework for Implementation Research (CFIR). The quality of included studies was appraised by two reviewers independently. The results were synthesized in a narrative review using the constructs of the CFIR as grouping themes.
+Results
+The search yielded 7,500 articles for screening, of which 157 were included. Most studies were quantitative designs in nursing home settings and were conducted in the United States. Determinants were largely structural in nature and allocated most frequently to the inner and outer setting domains of the CFIR. The following structural characteristics and compliance were found to be positively associated: smaller facilities (measured by bed capacity); higher nurse-staffing levels; and lower staff turnover. A facility’s geographic location and compliance was also associated. It was difficult to make findings in respect of process determinants as qualitative studies were sparse, limiting investigation of the processes underlying regulatory compliance.
+Conclusion
+The literature in this field has focused to date on structural attributes of compliant providers, perhaps because these are easier to measure, and has neglected more complex processes around the implementation of regulatory standards. A number of gaps, particularly in terms of qualitative work, are evident in the literature and further research in this area is needed to provide a clearer picture.
+
+https://pmc.ncbi.nlm.nih.gov/articles/PMC10101495/
+7.
+Cyberattacks targeting healthcare organizations are rising, and the financial and operational toll they take is growing.
+A recent report from Proofpoint found 92% of healthcare organizations reported experiencing a cyberattack in 2024, up from 88% in 2023, while the average cost of the most expensive attack was $4.7 million.
+While safeguarding sensitive patient data remains a top concern, malicious actors are leveraging artificial intelligence (AI) and machine learning technologies to make threats more complex. It’s important for leadership to understand why healthcare organizations are targeted, how they are targeted and how they can mitigate cyberthreats in 2025.
+The Top Cybersecurity Threats for 2025
+The top threats facing healthcare organizations include ransomware, breaches caused by cloud vulnerabilities and misconfigurations, bad bot traffic, and phishing. Phishing is getting a boost through the application of AI and large language models.
+“Ransomware and phishing are ongoing concerns for the industry,” says Derek Manky, chief security strategist and global vice president of threat intelligence at Fortinet’s FortiGuard Labs.
+He says that as AI-driven tools become increasingly ubiquitous, cybercriminals are using the technology to inform the reconnaissance and weaponization phases of the cyber kill chain.
+“As a result, threat actors are executing targeted attacks quickly and more precisely,” Manky says.
+
+
+RANSOMWARE THREATS
+Healthcare organizations face two pressing ransomware threats, according to Kumbhat. One involves mass data attacks targeting cloud backups, logs and archives.
+“Rather than targeting individual patient data, attackers aim to capture large-scale historical data to extort entire organizations,” he says.
+The second threat arises from session-based attacks stemming from weak authentication or identity management.
+“Compromised patient sessions, often due to insufficient security measures, allow attackers to pinpoint individuals or specific groups, leading to targeted ransomware campaigns,” Kumbhat explains.
+He says both threats underscore the need for strong data lifecycle security and identity management solutions in healthcare.
+“Healthcare is a top target for ransomware because they have the crown jewel of data from a patient care perspective,” Kumbhat adds.
+https://healthtechmagazine.net/article/2025/01/healthcare-cybersecurity-threats-2025-perfcon
+
+
+
+
+
+
+How AI Applications are Revolutionizing Healthcare
+Telemedicine and Remote Monitoring
+Diagnosis and Disease Detection
+Drug Discovery and Development:
+Treatment Planning and Personalization
+Predictive Analytics and Risk Assessment
+Increased Administrative Efficiency 
+
+If you see the link below of the page you will see in detail it is very interesting and good to know information
+
+HITRUST Helps Ensure the Security and Compliance of AI-Powered Healthcare Applications
+HITRUST recently introduced its AI Assurance Program to ensure secure and reliable AI implementation within the healthcare industry. Based on HITRUST's Common Security Framework (CSF), the program focuses on risk management, transparency, and industry collaboration.
+In cooperation with leading cloud service providers like AWS, Microsoft, and Google, the HITRUST AI Assurance Program extends robust security controls and certifications to AI applications. This enables organizations to adapt to the ever-evolving security landscape and proactively manage AI-related security risks in the healthcare sector.
+https://healthtechmagazine.net/article/2025/01/healthcare-cybersecurity-threats-2025-perfcon
+
+Deception Tech in Healthcare: Addressing Device Risks – Acalvio
+Healthcare institutions are heavily targeted by cyber attackers. The critical services these institutions provide, the volume of sensitive data they handle, the mix of IT and OT infrastructure, and unpreparedness make healthcare institutions very attractive and vulnerable to cyberattacks. While several strategies exist to mitigate risk, deception technology in healthcare is a proven and effective method to detect and respond to cyber attacks.
+
+
+The state of healthcare cybersecurity
+According to statistics published by the HIPPA Journal:
+There has been an upward trend in healthcare-related data breaches over the past 14 years.
+Between 2009 and 2022, 5,150 healthcare data breaches of 500 or more records have been reported to the HHS’ Office for Civil Rights.
+Those breaches have resulted in the exposure or impermissible disclosure of 382,262,109 healthcare records.
+In 2022, an average of 1.94 healthcare data breaches of 500 or more records were reported each day.
+Hacking is now the leading cause of healthcare data breaches.
+Many of the hacking incidents between 2014-2018 occurred many months, and in some cases years before they were detected.
+A review of the current data in the Department of Health and Human Services, Office for Civil Rights (HHS OCR), a database of major breaches, also shows that cyber attackers continue to compromise healthcare institutions more with each passing year.
+The Health Insurance Portability and Accountability Act of 1996 (HIPAA) stipulates how personally identifiable information maintained by the healthcare and healthcare insurance industries should be protected from fraud and theft. Major healthcare data breaches are defined as those reported under HIPAA compliance as impacting the confidential healthcare data (personal health information – PHI) of more than 500 individuals.
+The penalties for HIPAA violations can be severe. Multi-million-dollar fines are possible when violations have been allowed to persist for several years or when there is systemic non-compliance with the HIPAA Rules.
+
+https://www.acalvio.com/cyber-deception/deception-technology-in-healthcare-when-good-medical-devices-go-bad/
+
+
