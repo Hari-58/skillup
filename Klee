@@ -1,0 +1,64 @@
+Extending KLEE for Privacy Violation Detection in C Programs
+Name: Harish Chenoju, Harish Chenoju (Presenter), Shivani Poosarla (Presenter)
+College: Stevens Institute Of Technology
+Course: CS-810-E
+Prof Name: Tegan Brennan
+Date: May 13, 2025
+Abstract
+LeakLens is a post-processing tool designed to identify privacy violations by analyzing the output of the KLEE symbolic execution engine. It examines KLEE’s symbolic input propagation and reports cases where a sensitive (symbolic) input reaches untrusted sinks such as printf or send(). This allows developers to detect privacy leaks after a KLEE run without modifying KLEE itself. LeakLens is implemented in Python and parses KLEE’s log files and test cases to link concrete input values with output events.This is especially useful in fields like healthcare and finance, where keeping data private is very important.
+My role in the project was to help build the part of the tool that tracks sensitive data, set up the symbolic inputs (which simulate real data), and create a way to catch and report when sensitive data goes to the wrong place. I also led the setup for testing and created real-world examples to show how well the tool works.
+Introduction
+Protecting crucial component of software development nowadays is the security of sensitive data, particularly in systems that handle personal, financial and medical data. As C remains a widely-used language in performance-critical applications, but its lack of built-in safety checks can lead to serious security and privacy vulnerabilities. Current tools tools mostly concentrate on assertion violations or crash detection. This project improves the symbolic execution engine KLEE to identify privacy violations, specifically when private data is leaked to untrusted outputs. Our goal is to provide developers and security experts with a mechanism to analyze programs for such privacy breaches more effectively.
+Background
+A Symbolic execution is a powerful technique for program analysis where program inputs are treated as symbolic variables instead of fixed values. KLEE, an open-source tool based on the LLVM compiler infrastructure, enables high-coverage test generation and bug detection through symbolic execution. As KLEE is widely used for detecting program crashes and assertion failures, it does not support taint analysis by default, which is essential for tracking sensitive data throughout the program.
+Taint analysis is a technique which is used to monitor how data flows through a program, especially to make sure that confidential or private data does not reach unsafe destinations or 'sinks'. Our project leverages this technique by modifying KLEE to tag symbolic inputs with privacy markers and track their usage across the program, detecting violations when the data reaches known untrusted sinks like printf or send.
+Technical Approach
+LeakLens processes the output of a completed KLEE run to detect if any symbolic inputs like secret data flowed into untrusted sinks. In brief, the tool works as follows:
+Inputs: KLEE generates a set of output files for a run. These include global logs (messages.txt) and per-path files (test<N>.ktest, etc.). The messages.txt file contains KLEE’s runtime messages e.g. warnings, errors, etc., while each test<N>.ktest file contains the concrete test case (input values) for one execution path. LeakLens reads these files to gather the information. For example, test1.ktest might show that on path 1, the symbolic input “password” was concretely 1234.
+Processing: The core script (leaklens.py) scans messages.txt for invocations of known sink functions (e.g. lines containing printf( or send(). When a sink invocation is found, LeakLens identifies which input variables contributed to that output by cross-referencing with the constraints or test cases. Specifically, LeakLens parses each test<N>.ktest file to extract the concrete values assigned to symbolic inputs on that path. It then checks if any of those concrete values appear in the output related to the sink. In this way, if a symbolic input value is printed or sent, it is flagged as a leak. The tool’s logic is structured in modules: a parser for messages.txt, a parser for .ktest files, and a taint-tracking component that links inputs to outputs. The file leaklens.py orchestrates this pipeline.                                                                                                   • Outputs (Leak reports): LeakLens produces a report with listing each detected leak. For each case, it identifies the source like symbolic input variable and the sink e.g. printf or send call along with the test case filename. For example, it might also output “leak_printf.c: input secret reached printf (path test3)” indicating that in the program leak_printf.c, the secret variable was printed on path 3. If no leaks are found in a file, LeakLens notes that as well.
+No diagrams or graphics are used; the description above captures the key logic flow. LeakLens relies on KLEE’s existing output rather than instrumenting KLEE itself. This post-processing design means the tool can be run after any KLEE execution to analyze its findings without altering KLEE’s behavior.
+.
+Experimental Evaluation
+**Experimental Setup:**
+We evaluated LeakLens using KLEE 3.1 (built in RelWithDebInfo mode) on an
+x86_64 Linux system with LLVM 13.0.1. The analysis scripts run under Python 3.x. KLEE was configured to generate test cases (.ktest files) and warnings/messages in standard format. 
+Test Cases. Three example C programs were used to test LeakLens:
+• leak_printf.c: Reads a symbolic input (e.g. secret) and uses printf to write it to standard
+output.
+• leak_log.c: Reads a symbolic input and writes it to a log via a logging function (e.g. a call to log() or fprintf).
+• leak_network.c: Reads a symbolic input and sends it over a network socket using send().
+Each program is written so that a private input (marked symbolic by KLEE) flows to one of these sinks.
+
+**Results:**
+LeakLens correctly identified leaks in two of the cases. In leak_printf.c, the output
+report indicated that the secret input flowed into printf, matching the expected leak. In
+leak_network.c, it flagged that the secret flowed into send(). The tool reported entries like:
+• leak_printf.c: Leak detected – symbolic input secret reached printf().
+• leak_network.c: Leak detected – symbolic input secret reached send().
+For leak_log.c, LeakLens did not report a leak. This is expected given the current
+implementation, which only recognizes certain sink functions by name (e.g. printf, send). If log() is not included in the sink list, LeakLens will not flag it. This demonstrates a limitation (or expected “failure”) of the tool as configured. Overall, the results show that LeakLens successfully detects leaks for known sinks and reports the specific test-case filenames and inputs involved.
+
+Discussion
+LeakLens will provide a practical way to catch privacy leaks after symbolic execution, but there are trade-offs to the post-hoc approach.
+Offline vs. Online: LeakLens requires a completed KLEE run, it does not operate during program execution. This means any leak must occur in the generated output for detection. In contrast to dynamic systems (like TaintDroid) that perform in-execution taint tracking, LeakLens has no runtime overhead but cannot prevent leaks in real-time. • Sink Coverage: The tool only detects flows to pre-defined sinks. By default, we implemented checks for printf and send(). If a program leaks data via a different function (e.g. a custom logging function), LeakLens will miss it unless the sink is added to the analysis. Extending the LeakLens to recognize additional sinks is possible (by editing the sink-check list), but requires manual updates. This limited sink model explains why leak_log.c did not produce a report.
+• Reliance on KLEE Output: The accuracy of the LeakLens depends entirely on the KLEE’s output. If KLEE does not explore the path or record certain information, it cannot infer a leak. For example, if a path is infeasible or KLEE times out, any leak on that path remains undetected. Likewise, parsing KLEE’s log messages can be brittle if KLEE’s format changes. We encountered some challenges parsing the messages.txt format reliably and ensuring that concrete input values from .ktest files were correctly matched to outputs.
+• Lessons Learned: Implementing LeakLens highlighted the value of modular analysis. By reusing KLEE’s execution engine and focusing only on parsing its outputs, the tool remains lightweight and easy to deploy alongside any KLEE workflow. It also highlighted how symbolic execution tools like KLEE can be augmented with privacy checks: whereas Corin and Manzano built taint tracking into KLEE’s execution, LeakLens shows that even a simple log-based approach can catch many leaks. In future work, we plan to integrate LeakLens more closely with KLEE (e.g. as a KLEE plugin) so that taint propagation could be tracked during execution and new sinks recognized automatically.
+Conclusion
+LeakLens demonstrates that privacy leak detection can be effectively added on top of symbolic execution workflows. By analyzing the outputs of KLEE, it flags cases where symbolic (private) inputs reach untrusted sinks. This extends KLEE’s usefulness from generic bug-finding to privacy-aware testing. LeakLens requires no modification to the program under test or to KLEE itself, making it simple to use: developers can run KLEE as usual, then invoke LeakLens on the results to generate a privacy-leak report. In our evaluation, LeakLens successfully identified intended leaks in example programs, showing its utility for detecting flows of sensitive data. In summary, LeakLens is a low-overhead analysis tool that bridges symbolic test generation and information-flow tracking, helping ensure that KLEE’s generated tests remain privacy-safe.
+Bibliography
+ Lattner, Chris, and Vikram Adve. “LLVM: A Compilation Framework for Lifelong Program Analysis & Transformation.” Proceedings of the 2004 International Symposium on Code Generation and Optimization. 2004.
+Enck, William, et al. “TaintDroid: An Information-Flow Tracking System for Realtime
+Privacy Monitoring on Smartphones.” Communications of the ACM 57.3 (2014): 99–
+106.
+
+Qin, Feng, et al. “LIFT: A Low-Overhead Practical Information Flow Tracking System
+for Detecting Security Attacks.” MICRO-39, 2006.
+
+Cadar, Cristian, and Dawson Engler. “Execution Generated Test Cases: How to Make
+Systems Code Crash Itself.” SPIN 2005.
+
+The KLEE Symbolic Execution Engine. https://klee.github.io/.
+Project Retrospective
+My contributions to this project included implementing the taint tracking mechanism in KLEE, designing test programs in C to simulate privacy violations, integrating privacy-aware error detection into KLEE, and documenting the technical components. I participated in all team meetings, proposed the experimental structure, and led efforts to debug the taint propagation logic. Working in a group helped balance responsibilities, and pair programming sessions significantly sped up the development process.
+Code References
+https://github.com/shivanipoosarla/privacy-taint-klee
